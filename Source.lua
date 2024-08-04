@@ -403,14 +403,13 @@ if not _env.LoadedFarm then
 end
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
-local Window = redzlib:MakeWindow({ Title = "redz Hub : Meme Sea", SubTitle = "by redz9999", SaveFolder = "redzHub-MemeSea.json" })
+local Window = redzlib:MakeWindow({ Title = "YOUHUB : Meme Sea", SubTitle = "by redz9999", SaveFolder = "redzHub-MemeSea.json" })
 Window:AddMinimizeButton({
-  Button = { Image = "rbxassetid://15298567397", BackgroundTransparency = 0 },
+  Button = { Image = "", BackgroundTransparency = 0.5 },
   Corner = { CornerRadius = UDim.new(0, 6) }
 })
 
 local Tabs = {
-  Discord = Window:MakeTab({"Discord", "Info"}),
   MainFarm = Window:MakeTab({"Farm", "Home"}),
   Items = Window:MakeTab({"Items", "Swords"}),
   Stats = Window:MakeTab({"Stats", "Signal"}),
@@ -429,24 +428,15 @@ local function AddToggle(Tab, Settings, Flag)
   Tab:AddToggle(Settings)
 end
 
-local _Discord = Tabs.Discord do
-  _Discord:AddDiscordInvite({
-    Name = "redz Hub | Community",
-    Description = "Join our discord community to receive information about the next update",
-    Logo = "rbxassetid://17382040552",
-    Invite = "https://discord.gg/7aR7kNVt4g"
-  })
-end
-
 local _MainFarm = Tabs.MainFarm do
-  _MainFarm:AddDropdown({"Farm Tool", Loaded.WeaponsList, Settings.ToolFarm, function(Value)
+  _MainFarm:AddDropdown({"Select Weapon", Loaded.WeaponsList, Settings.ToolFarm, function(Value)
     Settings.ToolFarm = Value
   end, "Main/FarmTool"})
   _MainFarm:AddSection("Farm")
-  AddToggle(_MainFarm, {"Auto Farm Level", ("MaxLevel: %i"):format(MSetting.Setting.MaxLevel)}, "Level Farm")
-  AddToggle(_MainFarm, {"Auto Farm Nearest"}, "Nearest Farm")
+  AddToggle(_MainFarm, {"Auto Level", ("MaxLevel: %i"):format(MSetting.Setting.MaxLevel)}, "Level Farm")
+  AddToggle(_MainFarm, {"Auto Nearest"}, "Nearest Farm")
   _MainFarm:AddSection("Enemies")
-  _MainFarm:AddDropdown({"Select Enemie", Loaded.EnemeiesList, {Loaded.EnemeiesList[1]}, function(Value)
+  _MainFarm:AddDropdown({"Select Enemie Need Attack", Loaded.EnemeiesList, {Loaded.EnemeiesList[1]}, function(Value)
     _env.SelecetedEnemie = Value
   end, "Main/SEnemy"})
   AddToggle(_MainFarm, {"Auto Farm Selected"}, "FS Enemie")
