@@ -438,13 +438,13 @@ local _MainFarm = Tabs.MainFarm do
   _MainFarm:AddSection("Farm")
   AddToggle(_MainFarm, {"Auto Farm Level", ("MaxLevel: %i"):format(MSetting.Setting.MaxLevel)}, "Level Farm")
   AddToggle(_MainFarm, {"Auto Farm Nearest"}, "Nearest Farm")
-  _MainFarm:AddSection("Enemies")
+  _MainFarm:AddSection("Select Enemies Fram")
   _MainFarm:AddDropdown({"Select Enemie", Loaded.EnemeiesList, {Loaded.EnemeiesList[1]}, function(Value)
     _env.SelecetedEnemie = Value
   end, "Main/SEnemy"})
   AddToggle(_MainFarm, {"Auto Farm Selected"}, "FS Enemie")
   AddToggle(_MainFarm, {"Take Quest [ Enemie Selected ]", true}, "FS Take Quest")
-  _MainFarm:AddSection("Boss Farm")
+  _MainFarm:AddSection("Sea Event")
   AddToggle(_MainFarm, {"Auto Meme Beast [ Spawns every 30 Minutes ]", "Drops: Portal ( <25% ), Meme Cube ( <50% )"}, "Meme Beast")
   _MainFarm:AddSection("Raid")
   AddToggle(_MainFarm, {"Auto Farm Raid", "Only Level 1000"}, "Raid Farm")
@@ -485,20 +485,17 @@ local _Items = Tabs.Items do
   _Items:AddButton({"Reroll Aura Color [ 10 Gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
   end})
-  _Items:AddToggle({"Auto Reroll Aura Color", false,function(value)
-        _env.AutoAura = value
-    while _env.AutoAura do wait()
+  _Items:AddButton({"Auto Reroll Aura Color [ Leave The Game To Off ]",function(value)
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
-        end
   end})
-  _Items:AddSection("Bosses")
-  AddToggle(_Items, {"Auto Giant Pumpkin", "Drops: Pumpkin Head ( <10% ), Nugget Man ( <25% )"}, "Giant Pumpkin")
-  AddToggle(_Items, {"Auto Evil Noob", "Drops: Yellow Blade ( <5% ), Noob Friend ( <10% )"}, "Evil Noob")
-  AddToggle(_Items, {"Auto Lord Sus", "Drops: Purple Sword ( <5% ), Sus Pals ( <10% )"}, "Lord Sus")
-  _Items:AddSection("Race")
-  AddToggle(_Items, {"Auto Awakening Orb", "Only Level 500"}, "Race V2 Orb")
-  _Items:AddSection("Weapons")
-  AddToggle(_Items, {"Auto Floppa [ Exclusive Sword ]"}, "_Floppa Sword")
+  _MainFarm:AddSection("Fram Bosses Serect")
+  AddToggle(_MainFarm, {"Auto Spawn And Kill Giant Pumpkin", "Drops: Pumpkin Head ( <10% ), Nugget Man ( <25% )"}, "Giant Pumpkin")
+  AddToggle(_MainFarm, {"Auto Spawn And Kill Evil Noob", "Drops: Yellow Blade ( <5% ), Noob Friend ( <10% )"}, "Evil Noob")
+  AddToggle(_MainFarm, {"Auto Spawn And Kill Lord Sus", "Drops: Purple Sword ( <5% ), Sus Pals ( <10% )"}, "Lord Sus")
+  _MainFarm:AddSection("Fram Race v2")
+  AddToggle(_MainFarm, {"Auto Fram Awakening Orb", "Only Level 500"}, "Race V2 Orb")
+  --[[_Items:AddSection("Weapons")
+  AddToggle(_Items, {"Auto Floppa [ Exclusive Sword ]"}, "_Floppa Sword")]]
   --[[_Items:AddToggle({"Auto Click Popcat [ Help you get Popcat sword ]", false, function(Value)
     _env.AutoPopcat = Value
     while _env.AutoPopcat do _wait()
@@ -516,7 +513,7 @@ local _Stats = Tabs.Stats do
   _Stats:AddSlider({"Select Points", 1, 100, 1, 1, function(Value)
     Settings.AutoStats_Points = Value
   end, "Stats/SelectPoints"})
-  _Stats:AddToggle({"Auto Stats", false, function(Value)
+  _Stats:AddToggle({"Auto Stats", true, function(Value)
     _env.AutoStats = Value
     local _Points = PlayerData.SkillPoint
     while _env.AutoStats do _wait(0.5)
@@ -567,6 +564,7 @@ local _Shop = Tabs.Shop do
 end
 
 local _Misc = Tabs.Misc do
+  _Misc:AddSection("Code")
   _Misc:AddButton({"Redeem All Codes", Funcs.RAllCodes})
   _Misc:AddSection("Settings")
   _Misc:AddSlider({"Farm Distance", 5, 15, 1, 8, function(Value)
