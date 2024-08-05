@@ -403,7 +403,7 @@ if not _env.LoadedFarm then
 end
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
-local Window = redzlib:MakeWindow({ Title = "YOU HUB : Meme Sea", SubTitle = "by white7961", SaveFolder = "redzHub-MemeSea.json" })
+local Window = redzlib:MakeWindow({ Title = "YOUHUB v1 | [Update 4!!] Meme Sea (Roblox Game)", SubTitle = "by white7961", SaveFolder = "redzHub-MemeSea.json" })
 Window:AddMinimizeButton({
   Button = { Image = "", BackgroundTransparency = 0.25 },
   Corner = { CornerRadius = UDim.new(0, 6) }
@@ -463,7 +463,7 @@ local _Items = Tabs.Items do
   _Items:AddButton({"Reroll Powers 10X [ 2.5k gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Random_Power", {
       Type = "Decuple",
-      NPCName = "Dog Gacha",
+      NPCName = "Doge Gacha",
       GachaType = "Gems"
     })
   end})
@@ -486,7 +486,7 @@ local _Items = Tabs.Items do
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
   end})
   _Items:AddToggle({"Auto Reroll Aura Color [ Leave to Off ]", function(value)
-        _env.AutoAura = Value
+        _env.AutoAura = value
     while _env.AutoAura do _wait()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
         end
