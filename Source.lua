@@ -1,7 +1,7 @@
 --[[
-  Dev: redz9999
+  Dev: white7961
   Lib: redzLibV5
-  github: REDzHUB
+  github: Cold-Script
   
   Game: Roblox-MemeSea
 ]]
@@ -403,14 +403,13 @@ if not _env.LoadedFarm then
 end
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
-local Window = redzlib:MakeWindow({ Title = "redz Hub : Meme Sea", SubTitle = "by redz9999", SaveFolder = "redzHub-MemeSea.json" })
+local Window = redzlib:MakeWindow({ Title = "YOU HUB : Meme Sea", SubTitle = "by white7961", SaveFolder = "redzHub-MemeSea.json" })
 Window:AddMinimizeButton({
-  Button = { Image = "rbxassetid://15298567397", BackgroundTransparency = 0 },
+  Button = { Image = "", BackgroundTransparency = 0.25 },
   Corner = { CornerRadius = UDim.new(0, 6) }
 })
 
 local Tabs = {
-  Discord = Window:MakeTab({"Discord", "Info"}),
   MainFarm = Window:MakeTab({"Farm", "Home"}),
   Items = Window:MakeTab({"Items", "Swords"}),
   Stats = Window:MakeTab({"Stats", "Signal"}),
@@ -429,17 +428,11 @@ local function AddToggle(Tab, Settings, Flag)
   Tab:AddToggle(Settings)
 end
 
-local _Discord = Tabs.Discord do
-  _Discord:AddDiscordInvite({
-    Name = "redz Hub | Community",
-    Description = "Join our discord community to receive information about the next update",
-    Logo = "rbxassetid://17382040552",
-    Invite = "https://discord.gg/7aR7kNVt4g"
-  })
-end
+
 
 local _MainFarm = Tabs.MainFarm do
-  _MainFarm:AddDropdown({"Farm Tool", Loaded.WeaponsList, Settings.ToolFarm, function(Value)
+  _MainFarm:AddSection("Select Weapon")
+  _MainFarm:AddDropdown({"Select Weapon", Loaded.WeaponsList, Settings.ToolFarm, function(Value)
     Settings.ToolFarm = Value
   end, "Main/FarmTool"})
   _MainFarm:AddSection("Farm")
@@ -454,7 +447,7 @@ local _MainFarm = Tabs.MainFarm do
   _MainFarm:AddSection("Boss Farm")
   AddToggle(_MainFarm, {"Auto Meme Beast [ Spawns every 30 Minutes ]", "Drops: Portal ( <25% ), Meme Cube ( <50% )"}, "Meme Beast")
   _MainFarm:AddSection("Raid")
-  AddToggle(_MainFarm, {"Auto Farm Raid", "Req: Level 1000"}, "Raid Farm")
+  AddToggle(_MainFarm, {"Auto Farm Raid", "Only Level 1000"}, "Raid Farm")
 end
 
 local _Items = Tabs.Items do
@@ -464,6 +457,14 @@ local _Items = Tabs.Items do
       Type = "Decuple",
       NPCName = "Floppa Gacha",
       GachaType = "Money"
+    })
+  end})
+  
+  _Items:AddButton({"Reroll Powers 10X [ 2.5k Money ]", function()
+    OtherEvent.MainEvents.Modules:FireServer("Random_Power", {
+      Type = "Decuple",
+      NPCName = "Dog Gacha",
+      GachaType = "Gems"
     })
   end})
   _Items:AddToggle({"Auto Store Powers", false, function(Value)
@@ -484,21 +485,25 @@ local _Items = Tabs.Items do
   _Items:AddButton({"Reroll Aura Color [ 10 Gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
   end})
+  _Items:AddButton({"Auto Reroll Aura Color [ Leave to Off ]", function()
+      while wait() do
+    OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
+        end
+  end})
   _Items:AddSection("Bosses")
   AddToggle(_Items, {"Auto Giant Pumpkin", "Drops: Pumpkin Head ( <10% ), Nugget Man ( <25% )"}, "Giant Pumpkin")
   AddToggle(_Items, {"Auto Evil Noob", "Drops: Yellow Blade ( <5% ), Noob Friend ( <10% )"}, "Evil Noob")
   AddToggle(_Items, {"Auto Lord Sus", "Drops: Purple Sword ( <5% ), Sus Pals ( <10% )"}, "Lord Sus")
   _Items:AddSection("Race")
-  AddToggle(_Items, {"Auto Awakening Orb", "Req: Level 500"}, "Race V2 Orb")
+  AddToggle(_Items, {"Auto Awakening Orb", "Only Level 500"}, "Race V2 Orb")
   _Items:AddSection("Weapons")
   AddToggle(_Items, {"Auto Floppa [ Exclusive Sword ]"}, "_Floppa Sword")
-  --[[_Items:AddSection("Popcat")
-  _Items:AddToggle({"Auto Popcat", false, function(Value)
+  _Items:AddToggle({"Auto Click Popcat [ Help you get Popcat sword ]", false, function(Value)
     _env.AutoPopcat = Value
     while _env.AutoPopcat do _wait()
       fireclickdetector(Island.FloppaIsland.Popcat_Clickable.Part.ClickDetector)
     end
-  end, "AutoPopcat"})]]
+  end, "AutoPopcat"})
 end
 
 local _Stats = Tabs.Stats do
