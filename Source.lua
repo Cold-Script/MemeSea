@@ -151,7 +151,7 @@ end
 local Settings = Settings or {} do
   Settings.AutoStats_Points = 1
   Settings.BringMobs = true
-  Settings.FarmDistance = 9
+  Settings.FarmDistance = 10
   Settings.ViewHitbox = false
   Settings.AntiAFK = true
   Settings.AutoHaki = true
@@ -460,7 +460,7 @@ local _Items = Tabs.Items do
     })
   end})
   
-  _Items:AddButton({"Reroll Powers 10X [ 2.5k Money ]", function()
+  _Items:AddButton({"Reroll Powers 10X [ 2.5k gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Random_Power", {
       Type = "Decuple",
       NPCName = "Dog Gacha",
@@ -485,8 +485,9 @@ local _Items = Tabs.Items do
   _Items:AddButton({"Reroll Aura Color [ 10 Gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
   end})
-  _Items:AddButton({"Auto Reroll Aura Color [ Leave to Off ]", function()
-      while wait() do
+  _Items:AddToggle({"Auto Reroll Aura Color [ Leave to Off ]", function(value)
+        _env.AutoAura = Value
+    while _env.AutoAura do _wait()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
         end
   end})
@@ -498,12 +499,12 @@ local _Items = Tabs.Items do
   AddToggle(_Items, {"Auto Awakening Orb", "Only Level 500"}, "Race V2 Orb")
   _Items:AddSection("Weapons")
   AddToggle(_Items, {"Auto Floppa [ Exclusive Sword ]"}, "_Floppa Sword")
-  _Items:AddToggle({"Auto Click Popcat [ Help you get Popcat sword ]", false, function(Value)
+  --[[_Items:AddToggle({"Auto Click Popcat [ Help you get Popcat sword ]", false, function(Value)
     _env.AutoPopcat = Value
     while _env.AutoPopcat do _wait()
       fireclickdetector(Island.FloppaIsland.Popcat_Clickable.Part.ClickDetector)
     end
-  end, "AutoPopcat"})
+  end, "AutoPopcat"})]]
 end
 
 local _Stats = Tabs.Stats do
