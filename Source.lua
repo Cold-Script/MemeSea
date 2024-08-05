@@ -485,9 +485,9 @@ local _Items = Tabs.Items do
   _Items:AddButton({"Reroll Aura Color [ 10 Gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
   end})
-  _Items:AddToggle({"Auto Reroll Aura Color [ Leave to Off ]", function(value)
+  _Items:AddToggle({"Auto Reroll Aura Color", false,function(value)
         _env.AutoAura = value
-    while _env.AutoAura do _wait()
+    while _env.AutoAura do wait()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
         end
   end})
