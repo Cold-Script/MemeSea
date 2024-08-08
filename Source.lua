@@ -405,8 +405,8 @@ end
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 local Window = redzlib:MakeWindow({ Title = "YOUHUB v1 | [Update 4!!] Meme Sea (Roblox Game)", SubTitle = "by white7961", SaveFolder = "redzHub-MemeSea.json" })
 Window:AddMinimizeButton({
-  Button = { Image = "", BackgroundTransparency = 0.25 },
-  Corner = { CornerRadius = UDim.new(0, 6) }
+  Button = { Image = "", BackgroundTransparency = 0 },
+  Corner = { CornerRadius = UDim.new(0, 10) }
 })
 
 local Tabs = {
@@ -460,7 +460,7 @@ local _Items = Tabs.Items do
     })
   end})
   
-  _Items:AddButton({"Reroll Powers 10X [ 2.5k gems ]", function()
+  _Items:AddButton({"Reroll Powers 10X [ 250 gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Random_Power", {
       Type = "Decuple",
       NPCName = "Doge Gacha",
@@ -486,7 +486,9 @@ local _Items = Tabs.Items do
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
   end})
   _Items:AddButton({"Auto Reroll Aura Color [ Leave The Game To Off ]",function(value)
+        while wait() do
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
+        end
   end})
   _MainFarm:AddSection("Fram Bosses Serect")
   AddToggle(_MainFarm, {"Auto Spawn And Kill Giant Pumpkin", "Drops: Pumpkin Head ( <10% ), Nugget Man ( <25% )"}, "Giant Pumpkin")
