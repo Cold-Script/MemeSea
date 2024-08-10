@@ -547,7 +547,7 @@ end
 local _Teleport = Tabs.Teleport do
   _Teleport:AddSection("Teleport")
   _Teleport:AddDropdown({"Islands", Location:WaitForChild("SpawnLocations"):GetChildren(), {}, function(Value)
-    _G.TpIsland = value
+    _G.TpIsland = Value
   end})
   _Teleport:AddButton({"TP Island", function(Value)
     GoTo(Location.SpawnLocations[_G.TpIsland].CFrame)
