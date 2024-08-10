@@ -496,14 +496,19 @@ local _Items = Tabs.Items do
   AddToggle(_MainFarm, {"Auto Spawn And Kill Lord Sus", "Drops: Purple Sword ( <5% ), Sus Pals ( <10% )"}, "Lord Sus")
   _MainFarm:AddSection("Fram Race v2")
   AddToggle(_MainFarm, {"Auto Fram Awakening Orb", "Only Level 500"}, "Race V2 Orb")
-  --[[_Items:AddSection("Weapons")
-  AddToggle(_Items, {"Auto Floppa [ Exclusive Sword ]"}, "_Floppa Sword")]]
-  --[[_Items:AddToggle({"Auto Click Popcat [ Help you get Popcat sword ]", false, function(Value)
+  _Items:AddSection("Weapons special")
+  AddToggle(_Items, {"Auto Floppa Sword"}, "_Floppa Sword")
+  _Items:AddToggle({"Auto Popcat", false, function(Value)
     _env.AutoPopcat = Value
-    while _env.AutoPopcat do _wait()
-      fireclickdetector(Island.FloppaIsland.Popcat_Clickable.Part.ClickDetector)
+    local ClickDetector = Island.FloppaIsland.Popcat_Clickable.Part.ClickDetector
+    local Heartbeat = RunService.Heartbeat
+    if Value then GoTo(CFrame_new(400, -37, -588)) end
+    
+    while _env.AutoPopcat do Heartbeat:Wait()
+      fireclickdetector(ClickDetector)
     end
-  end, "AutoPopcat"})]]
+  end, "AutoPopcat"})
+end
 end
 
 local _Stats = Tabs.Stats do
@@ -550,6 +555,19 @@ local _Teleport = Tabs.Teleport do
 end
 
 local _Shop = Tabs.Shop do
+_Shop:AddSection("Auto Buy")
+  _Shop:AddToggle({"Auto Buy Abilities", false, function(Value)
+    _env.AutoBuyAbility = Value
+    while _env.AutoBuyAbility do  _wait(1)
+      if not Funcs:AbilityUnlocked("Instinct") and Funcs:CanBuy("Instinct") then
+        OtherEvent.MainEvents.Modules:FireServer("Ability_Teacher", "Nugget Man")
+      elseif not Funcs:AbilityUnlocked("FlashStep") and Funcs:CanBuy("FlashStep") then
+        OtherEvent.MainEvents.Modules:FireServer("Ability_Teacher", "Giga Chad")
+      elseif not Funcs:AbilityUnlocked("Aura") and Funcs:CanBuy("Aura") then
+        OtherEvent.MainEvents.Modules:FireServer("Ability_Teacher", "Aura Master")
+      else wait(3) end
+    end
+  end, "Auto Buy Ability", Desc = "Aura, Instinct & Flash Step"})
   for _,s in next, Loaded.Shop do
     _Shop:AddSection({s[1]})
     for _,item in pairs(s[2]) do
