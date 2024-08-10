@@ -482,9 +482,7 @@ local _Items = Tabs.Items do
     end
   end, "AutoStore"})
   _Items:AddSection("Misc")
-  _Items:AddButton({"Random Race", function()
-    OtherEvent.MainEvents.Modules:FireServer("Race", "Watermelon Man")
-  end})
+ 
   _Items:AddButton({"Reroll Aura Color [ 10 Gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
   end})
@@ -551,14 +549,14 @@ local _Teleport = Tabs.Teleport do
   _Teleport:AddDropdown({"Islands", Location:WaitForChild("SpawnLocations"):GetChildren(), {}, function(Value)
     _G.TpIsland = value
   end})
-  _Teleport:Button({"TP Island", function(Value)
+  _Teleport:AddButton({"TP Island", function(Value)
     GoTo(Location.SpawnLocations[_G.TpIsland].CFrame)
       end})
   _Teleport:AddDropdown({"Quests", Location:WaitForChild("QuestLocaion"):GetChildren(), {}, function(Value)
-    GoTo(Location.QuestLocaion[Value].CFrame)
+    _G.TpQuest = Value
   end})
-  _Teleport:Button({"TP Quest", function(Value)
-    GoTo(Location.SpawnLocations[_G.TpIsland].CFrame)
+  _Teleport:AddButton({"TP Quest", function(Value)
+    GoTo(Location.QuestLocaion[_G.TpQuest].CFrame)
       end})
 end
 
