@@ -483,7 +483,7 @@ local _Items = Tabs.Items do
   end, "AutoStore"})
   _Items:AddSection("Misc")
   _Items:AddButton({"Random Race", function()
-    OtherEvent.MainEvents.Modules:FireServer("Random_Race", "Watermelon Man")
+    OtherEvent.MainEvents.Modules:FireServer("Race", "Watermelon Man")
   end})
   _Items:AddButton({"Reroll Aura Color [ 10 Gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
@@ -511,7 +511,6 @@ local _Items = Tabs.Items do
       fireclickdetector(ClickDetector)
     end
   end, "AutoPopcat"})
-end
 end
 
 local _Stats = Tabs.Stats do
@@ -550,11 +549,17 @@ end
 local _Teleport = Tabs.Teleport do
   _Teleport:AddSection("Teleport")
   _Teleport:AddDropdown({"Islands", Location:WaitForChild("SpawnLocations"):GetChildren(), {}, function(Value)
-    GoTo(Location.SpawnLocations[Value].CFrame)
+    _G.TpIsland = value
   end})
+  _Teleport:Button({"TP Island", function(Value)
+    GoTo(Location.SpawnLocations[_G.TpIsland].CFrame)
+      end})
   _Teleport:AddDropdown({"Quests", Location:WaitForChild("QuestLocaion"):GetChildren(), {}, function(Value)
     GoTo(Location.QuestLocaion[Value].CFrame)
   end})
+  _Teleport:Button({"TP Quest", function(Value)
+    GoTo(Location.SpawnLocations[_G.TpIsland].CFrame)
+      end})
 end
 
 local _Shop = Tabs.Shop do
@@ -595,7 +600,6 @@ local _Misc = Tabs.Misc do
     Settings.FarmCFrame = CFrame_new(0, Value or 8, 0) * CFrame_Angles(math.rad(-90), 0, 0)
   end, "Farm Distance"})
   _Misc:AddToggle({"Auto Aura", Settings.AutoHaki, function(Value) Settings.AutoHaki = Value end, "Auto Haki"})
-  _Misc:AddToggle({"View Hitbox", Settings.ViewHitbox, function(Value) Settings.ViewHitbox = Value end, "View Hitbox"})
   _Misc:AddToggle({"Auto Attack", Settings.AutoClick, function(Value) Settings.AutoClick = Value end, "Auto Attack"})
   _Misc:AddToggle({"Bring Mobs", Settings.BringMobs, function(Value) Settings.BringMobs = Value end, "Bring Mobs"})
   _Misc:AddToggle({"Anti AFK", Settings.AntiAFK, function(Value) Settings.AntiAFK = Value end, "Anti AFK"})
