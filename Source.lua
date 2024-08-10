@@ -481,7 +481,10 @@ local _Items = Tabs.Items do
       end
     end
   end, "AutoStore"})
-  _Items:AddSection("Aura Color")
+  _Items:AddSection("Misc")
+  _Items:AddButton({"Random Race", function()
+    OtherEvent.MainEvents.Modules:FireServer("Random_Race", "Watermelon Man")
+  end})
   _Items:AddButton({"Reroll Aura Color [ 10 Gems ]", function()
     OtherEvent.MainEvents.Modules:FireServer("Reroll_Color", "Halfed Sorcerer")
   end})
@@ -592,6 +595,7 @@ local _Misc = Tabs.Misc do
     Settings.FarmCFrame = CFrame_new(0, Value or 8, 0) * CFrame_Angles(math.rad(-90), 0, 0)
   end, "Farm Distance"})
   _Misc:AddToggle({"Auto Aura", Settings.AutoHaki, function(Value) Settings.AutoHaki = Value end, "Auto Haki"})
+  _Misc:AddToggle({"View Hitbox", Settings.ViewHitbox, function(Value) Settings.ViewHitbox = Value end, "View Hitbox"})
   _Misc:AddToggle({"Auto Attack", Settings.AutoClick, function(Value) Settings.AutoClick = Value end, "Auto Attack"})
   _Misc:AddToggle({"Bring Mobs", Settings.BringMobs, function(Value) Settings.BringMobs = Value end, "Bring Mobs"})
   _Misc:AddToggle({"Anti AFK", Settings.AntiAFK, function(Value) Settings.AntiAFK = Value end, "Anti AFK"})
