@@ -481,6 +481,17 @@ local _Items = Tabs.Items do
       end
     end
   end, "AutoStore"})
+  _Items:AddToggle({"Auto Drop Powers", false, function(Value)
+    _env.AutoStorePowers = Value
+    while _env.AutoStorePowers do _wait()
+      for _,v in ipairs(Player.Backpack:GetChildren()) do
+        if v:IsA("Tool") and v.ToolTip == "Power" and v:GetAttribute("Using") == nil then
+          v.Parent = Player.Character
+          OtherEvent.MainEvents.Modules:FireServer("Eatable_Power", { Action = "Drop", Tool = v })
+        end
+      end
+    end
+  end, "AutoDrop"})
   _Items:AddSection("Misc")
  
   _Items:AddButton({"Reroll Aura Color [ 10 Gems ]", function()
